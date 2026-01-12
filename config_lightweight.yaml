@@ -1,0 +1,72 @@
+# Lightweight configuration for low-spec laptops
+# Optimized for CPU training with reduced memory usage
+
+# Data paths
+data:
+  root_dir: "."
+  train_images: "train"
+  train_csv: "trainrenamed.csv"
+  test_csv: "testrenamed.csv"
+  answers_file: "answers.txt"
+  val_split: 0.15
+
+# Image preprocessing
+image:
+  size: 224
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+  augmentation: false  # Disabled for faster training
+
+# Text preprocessing
+text:
+  max_length: 32  # Reduced from 64
+  vocab_size: 5000  # Reduced from 10000
+  embedding_dim: 128  # Reduced from 300
+
+# Model configurations (Lightweight)
+model:
+  baseline:
+    name: "baseline_lstm_light"
+    hidden_dim: 256  # Reduced from 512
+    num_layers: 1  # Reduced from 2
+    dropout: 0.2
+
+# Training hyperparameters (Optimized for low-spec)
+training:
+  batch_size: 8  # Reduced from 32
+  num_epochs: 10  # Reduced from 50
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adam"
+  scheduler: "step"
+  warmup_epochs: 0
+  gradient_clip: 1.0
+  early_stopping_patience: 5
+  
+  # Single GPU/CPU
+  num_gpus: 0  # Use CPU
+  distributed: false
+
+# Evaluation
+evaluation:
+  metrics:
+    - accuracy
+    - f1_score
+  save_predictions: false
+
+# Logging
+logging:
+  use_tensorboard: false
+  use_wandb: false
+  log_interval: 50
+  save_interval: 500
+
+# Paths
+paths:
+  checkpoints: "checkpoints"
+  experiments: "experiments"
+  results: "results"
+  logs: "logs"
+
+# Random seed
+seed: 42
