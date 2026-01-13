@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "train_samples": 19755,
+    "test_samples": 6761,
+    "train_images": 2599,
+    "test_images": 858,
+    "unique_answers": 3273
+  },
+  "questions": {
+    "avg_length": 6.351505947861301,
+    "max_length": 37,
+    "median_length": 5.0,
+    "recommended_max_length": 16
+  },
+  "answers": {
+    "avg_length": 1.7981776765375854,
+    "max_length": 34,
+    "yes_no_percentage": 49.638066312325996,
+    "recommended_max_length": 6
+  },
+  "question_types": {
+    "Yes/No": 9718,
+    "What": 8083,
+    "Where": 1316,
+    "How": 428,
+    "Other": 139,
+    "Why": 71
+  }
+}

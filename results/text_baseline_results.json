@@ -1,0 +1,12 @@
+{
+  "model_type": "LSTM",
+  "vocab_size": 3965,
+  "num_classes": 4592,
+  "total_parameters": 2609520,
+  "test_accuracy": 0.4735985800917024,
+  "test_f1_macro": 0.007889503222391308,
+  "test_f1_weighted": 0.44344024277373467,
+  "test_precision": 0.00794400800600931,
+  "test_recall": 0.012207523229897554,
+  "best_val_accuracy": 0.4473684210526316
+}
