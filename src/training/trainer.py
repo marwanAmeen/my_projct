@@ -12,7 +12,6 @@ import yaml
 from typing import Dict, Optional
 
 from ..evaluation.metrics import VQAMetrics, AverageMeter, calculate_accuracy, calculate_top_k_accuracy
-from ..utils.logger import setup_logger
 
 
 class TextVQATrainer:
@@ -48,12 +47,6 @@ class TextVQATrainer:
         self.checkpoint_dir = Path(checkpoint_dir) / experiment_name
         self.checkpoint_dir.mkdir(parents=True, exist_ok=True)
         
-        # Setup logger
-        self.logger = setup_logger(
-            name=experiment_name,
-            log_file=self.checkpoint_dir / "training.log"
-        )
-        
         # Loss function
         self.criterion = nn.CrossEntropyLoss()
         
@@ -79,8 +72,8 @@ class TextVQATrainer:
         self.train_metrics = VQAMetrics(model.num_classes)
         self.val_metrics = VQAMetrics(model.num_classes)
         
-        self.logger.info(f"Initialized trainer for {experiment_name}")
-        self.logger.info(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")
+        print(f"Initialized trainer for {experiment_name}")
+        print(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")
     
     def _create_scheduler(self):
         """Create learning rate scheduler"""
@@ -231,7 +224,7 @@ class TextVQATrainer:
         if is_best:
             best_path = self.checkpoint_dir / "best_model.pth"
             torch.save(checkpoint, best_path)
-            self.logger.info(f"Saved best model with accuracy: {self.best_val_acc:.4f}")
+            print(f"Saved best model with accuracy: {self.best_val_acc:.4f}")
     
     def load_checkpoint(self, checkpoint_path: str):
         """Load checkpoint"""
@@ -243,14 +236,14 @@ class TextVQATrainer:
         self.current_epoch = checkpoint['epoch']
         self.best_val_acc = checkpoint['best_val_acc']
         
-        self.logger.info(f"Loaded checkpoint from epoch {self.current_epoch}")
+        print(f"Loaded checkpoint from epoch {self.current_epoch}")
     
     def train(self):
         """Main training loop"""
         num_epochs = self.config['training']['num_epochs']
         patience = self.config['training']['early_stopping_patience']
         
-        self.logger.info(f"Starting training for {num_epochs} epochs")
+        print(f"Starting training for {num_epochs} epochs")
         start_time = time.time()
         
         for epoch in range(num_epochs):
@@ -269,10 +262,10 @@ class TextVQATrainer:
                 self.scheduler.step()
             
             # Log metrics
-            self.logger.info(f"\nEpoch {epoch + 1}/{num_epochs}")
-            self.logger.info(f"Train Loss: {train_metrics['loss']:.4f}, Acc: {train_metrics['accuracy']:.4f}")
-            self.logger.info(f"Val Loss: {val_metrics['loss']:.4f}, Acc: {val_metrics['accuracy']:.4f}")
-            self.logger.info(f"Val F1 (macro): {val_metrics['f1_macro']:.4f}")
+            print(f"\nEpoch {epoch + 1}/{num_epochs}")
+            print(f"Train Loss: {train_metrics['loss']:.4f}, Acc: {train_metrics['accuracy']:.4f}")
+            print(f"Val Loss: {val_metrics['loss']:.4f}, Acc: {val_metrics['accuracy']:.4f}")
+            print(f"Val F1 (macro): {val_metrics['f1_macro']:.4f}")
             
             # Save checkpoint
             self.save_checkpoint(f"checkpoint_epoch_{epoch + 1}.pth")
@@ -287,9 +280,9 @@ class TextVQATrainer:
             
             # Early stopping
             if self.epochs_without_improvement >= patience:
-                self.logger.info(f"Early stopping triggered after {epoch + 1} epochs")
+                print(f"Early stopping triggered after {epoch + 1} epochs")
                 break
         
         total_time = time.time() - start_time
-        self.logger.info(f"\nTraining completed in {total_time / 60:.2f} minutes")
-        self.logger.info(f"Best validation accuracy: {self.best_val_acc:.4f}")
+        print(f"\nTraining completed in {total_time / 60:.2f} minutes")
+        print(f"Best validation accuracy: {self.best_val_acc:.4f}")
