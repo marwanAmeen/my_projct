@@ -73,6 +73,9 @@ class MultimodalVQAModel(nn.Module):
             pretrained=vision_pretrained
         )
         
+        # Add dropout layer for text features
+        self.text_dropout = nn.Dropout(dropout)
+        
         # Fusion layer
         if fusion_type == "concat":
             # Simple concatenation
@@ -169,7 +172,7 @@ class MultimodalVQAModel(nn.Module):
             text_features = hidden[-1]
         
         # Apply dropout
-        text_features = self.text_encoder.dropout(text_features)
+        text_features = self.text_dropout(text_features)
         
         return text_features
     
@@ -272,6 +275,9 @@ class CrossModalAttentionVQA(nn.Module):
             pretrained=True
         )
         
+        # Add dropout layer for text features
+        self.text_dropout = nn.Dropout(dropout)
+        
         # Cross-modal attention
         self.cross_attention = nn.MultiheadAttention(
             embed_dim=vision_feature_dim,
@@ -304,7 +310,7 @@ class CrossModalAttentionVQA(nn.Module):
         embedded = self.text_encoder.embedding(questions)
         lstm_out, (hidden, cell) = self.text_encoder.lstm(embedded)
         text_features = torch.cat((hidden[-2], hidden[-1]), dim=1)
-        text_features = self.text_encoder.dropout(text_features)
+        text_features = self.text_dropout(text_features)
         
         # Project text to vision dimension
         text_proj = self.text_projection(text_features)

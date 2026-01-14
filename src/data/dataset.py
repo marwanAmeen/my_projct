@@ -2,10 +2,28 @@
 import os
 import pandas as pd
 import torch
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, DataLoader
 from PIL import Image
 from typing import Dict, Optional, Tuple
 import numpy as np
+
+
+def build_answer_vocab(answers):
+    """Build answer vocabulary with consistent indexing"""
+    # Get unique answers and sort them for consistent indexing
+    unique_answers = sorted(list(set(answers)))
+
+    # Create mapping for unique answers
+    ans_to_idx = {ans: i for i, ans in enumerate(unique_answers)}
+
+    # Add a special token for unknown answers if it's not already present
+    # It's crucial that this token, if used, gets an index within the valid range.
+    # Its index will be the last one.
+    if '<UNK>' not in ans_to_idx:
+        ans_to_idx['<UNK>'] = len(ans_to_idx)
+
+    idx_to_ans = {i: ans for ans, i in ans_to_idx.items()}
+    return ans_to_idx, idx_to_ans
 
 
 class PathVQADataset(Dataset):
@@ -45,8 +63,8 @@ class PathVQADataset(Dataset):
             else:
                 answers = self.data['answer'].unique().tolist()
             
-            self.answer_to_idx = {ans: idx for idx, ans in enumerate(answers)}
-            self.idx_to_answer = {idx: ans for ans, idx in self.answer_to_idx.items()}
+            # Use the proper answer vocabulary builder
+            self.answer_to_idx, self.idx_to_answer = build_answer_vocab(answers)
         else:
             self.answer_to_idx = answer_to_idx
             self.idx_to_answer = {idx: ans for ans, idx in answer_to_idx.items()}
@@ -101,7 +119,7 @@ class PathVQADataset(Dataset):
         
         # Process answer
         answer_text = row['answer']
-        answer_idx = self.answer_to_idx.get(answer_text, 0)  # Default to 0 if unknown
+        answer_idx = self.answer_to_idx.get(answer_text, self.answer_to_idx.get('<UNK>', 0))  # Use <UNK> token if unknown
         
         return {
             'image': image,
@@ -426,7 +444,8 @@ class MultimodalVQADataset(Dataset):
         if answer_to_idx is None:
             with open(answers_file, 'r', encoding='utf-8') as f:
                 answers = [line.strip() for line in f.readlines()]
-            self.answer_to_idx = {ans: idx for idx, ans in enumerate(answers)}
+            # Use the proper answer vocabulary builder
+            self.answer_to_idx, self.idx_to_answer = build_answer_vocab(answers)
         else:
             self.answer_to_idx = answer_to_idx
         
@@ -508,8 +527,8 @@ class MultimodalVQADataset(Dataset):
         
         # Load and transform image
         image_name = row['image']
-        if not image_name.endswith('.jpg'):
-            image_name = f"{image_name}.jpg"
+        if not image_name.endswith('.png'):
+            image_name = f"{image_name}.png"
         
         image_path = os.path.join(self.image_dir, image_name)
         
@@ -527,7 +546,7 @@ class MultimodalVQADataset(Dataset):
         
         # Get answer
         answer_text = str(row['answer']).strip()
-        answer_idx = self.answer_to_idx.get(answer_text, 0)
+        answer_idx = self.answer_to_idx.get(answer_text, self.answer_to_idx.get('<UNK>', 0))  # Use <UNK> token if unknown
         
         return {
             'image': image,

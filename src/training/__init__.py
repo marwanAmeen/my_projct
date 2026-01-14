@@ -1,3 +1,2 @@
 """Training modules"""
-from .trainer import Trainer
-from .config import TrainingConfig
+from .trainer import TextVQATrainer
