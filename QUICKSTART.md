@@ -1,6 +1,6 @@
 # Quick Start Guide - Text-Only VQA Training
 
-## ✅ What We've Built
+##   What We've Built
 
 ### 1. **Dataset Module** ([src/data/dataset.py](src/data/dataset.py))
 - `TextOnlyVQADataset` - Loads questions and answers (no images)
@@ -35,7 +35,7 @@
 
 ---
 
-## 🚀 Running with WSL Python
+##   Running with WSL Python
 
 ### Step 1: Install Dependencies (in WSL terminal)
 
@@ -56,10 +56,10 @@ python3 test_setup.py
 ```
 
 This will:
-- ✓ Load data and build vocabulary
-- ✓ Create LSTM model
-- ✓ Test forward pass
-- ✓ Test training step
+-   Load data and build vocabulary
+-   Create LSTM model
+-   Test forward pass
+-   Test training step
 
 ### Step 3: Quick Training Test (2 epochs, ~5-10 minutes)
 
@@ -94,7 +94,7 @@ python3 train_text_model.py --config config_lightweight.yaml --model-type lstm -
 
 ---
 
-## 📊 What to Expect
+##   What to Expect
 
 ### Model Size
 - **Lightweight LSTM**: ~2-5 MB, ~500K-2M parameters
@@ -114,7 +114,7 @@ python3 train_text_model.py --config config_lightweight.yaml --model-type lstm -
 
 ---
 
-## 📁 Output Files
+##   Output Files
 
 ### Checkpoints
 ```
@@ -157,17 +157,17 @@ predictions, probabilities = model.predict(questions)
 
 ---
 
-## 🎯 Next Steps (After Text Model Works)
+##   Next Steps (After Text Model Works)
 
-1. ✅ **Text-only baseline** - Training language model (DONE!)
-2. 🔄 **Add vision**: Implement CNN image encoder
-3. 🔄 **Multimodal fusion**: Combine text + image features
-4. 🔄 **Vision-Language Models**: BLIP, CLIP, etc.
-5. 🔄 **Fine-tuning**: Optimize on PathVQA dataset
+1.   **Text-only baseline** - Training language model (DONE!)
+2.   **Add vision**: Implement CNN image encoder
+3.   **Multimodal fusion**: Combine text + image features
+4.   **Vision-Language Models**: BLIP, CLIP, etc.
+5.   **Fine-tuning**: Optimize on PathVQA dataset
 
 ---
 
-## 🐛 Troubleshooting
+##   Troubleshooting
 
 ### "ModuleNotFoundError: No module named 'torch'"
 ```bash
@@ -197,7 +197,7 @@ The progress bars show:
 
 ---
 
-## 💡 Tips for Low-Spec Laptop
+##   Tips for Low-Spec Laptop
 
 1. **Use lightweight config**: `--config config_lightweight.yaml`
 2. **Start with quick test**: Run `quick_train.py` first
@@ -208,14 +208,14 @@ The progress bars show:
 
 ---
 
-## 📝 Summary
+##   Summary
 
 You now have a complete text-only VQA training pipeline:
-- ✅ Data loading and preprocessing
-- ✅ LSTM and Transformer models
-- ✅ Training loop with validation
-- ✅ Metrics and evaluation
-- ✅ Checkpointing and logging
-- ✅ Low-spec optimizations
+-   Data loading and preprocessing
+-   LSTM and Transformer models
+-   Training loop with validation
+-   Metrics and evaluation
+-   Checkpointing and logging
+-   Low-spec optimizations
 
 **Ready to run!** Start with `test_setup.py` to verify everything works.

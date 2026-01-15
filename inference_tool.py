@@ -38,7 +38,7 @@ class VQAInferenceTool:
         config_path: str = "config.yaml",
         text_checkpoint: str = "checkpoints/text_baseline_lstm_notebook/best_model.pth",
         multimodal_checkpoint: str = "checkpoints/multimodal_concat/best_model.pth",
-        answers_file: str = "answers.txt",
+        answers_file: str = "data/answers.txt",
         device: str = "auto"
     ):
         """
@@ -76,7 +76,7 @@ class VQAInferenceTool:
                                std=[0.229, 0.224, 0.225])
         ])
         
-        print(f"✓ VQA Inference Tool ready!")
+        print(f"  VQA Inference Tool ready!")
         print(f"  Device: {self.device}")
         print(f"  Text model loaded: {text_checkpoint}")
         print(f"  Multimodal model loaded: {multimodal_checkpoint}")
@@ -359,7 +359,7 @@ class VQAInferenceTool:
                     text_answer = result['text_only']['best_answer']
                     mm_answer = result['multimodal']['best_answer']
                     if text_answer != mm_answer:
-                        print(f"\n🔍 Models disagree!")
+                        print(f"\n  Models disagree!")
                         print(f"  Text-only: {text_answer}")
                         print(f"  Multimodal: {mm_answer}")
                 

@@ -21,11 +21,11 @@ print("=" * 80)
 with open("config_lightweight.yaml", 'r') as f:
     config = yaml.safe_load(f)
 
-print("\n✓ Configuration loaded")
+print("\n  Configuration loaded")
 
 # Check device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"✓ Device: {device}")
+print(f"  Device: {device}")
 
 # Test data loading with small batch
 print("\n" + "-" * 80)
@@ -43,7 +43,7 @@ try:
         max_length=config['text']['max_length']
     )
     
-    print(f"✓ Data loaders created successfully")
+    print(f"  Data loaders created successfully")
     print(f"  - Vocabulary size: {vocab_size}")
     print(f"  - Number of classes: {num_classes}")
     print(f"  - Train batches: {len(train_loader)}")
@@ -51,12 +51,12 @@ try:
     
     # Test loading one batch
     batch = next(iter(train_loader))
-    print(f"✓ Loaded sample batch")
+    print(f"  Loaded sample batch")
     print(f"  - Question shape: {batch['question'].shape}")
     print(f"  - Answer shape: {batch['answer'].shape}")
     
 except Exception as e:
-    print(f"✗ Data loading failed: {str(e)}")
+    print(f"  Data loading failed: {str(e)}")
     sys.exit(1)
 
 # Test model creation
@@ -77,7 +77,7 @@ try:
     )
     
     total_params = sum(p.numel() for p in model.parameters())
-    print(f"✓ Model created successfully")
+    print(f"  Model created successfully")
     print(f"  - Total parameters: {total_params:,}")
     print(f"  - Model size: ~{total_params * 4 / (1024**2):.2f} MB")
     
@@ -88,11 +88,11 @@ try:
     with torch.no_grad():
         outputs = model(questions)
     
-    print(f"✓ Forward pass successful")
+    print(f"  Forward pass successful")
     print(f"  - Output shape: {outputs.shape}")
     
 except Exception as e:
-    print(f"✗ Model creation/forward pass failed: {str(e)}")
+    print(f"  Model creation/forward pass failed: {str(e)}")
     sys.exit(1)
 
 # Test training step
@@ -120,16 +120,16 @@ try:
     predictions = outputs.argmax(dim=1)
     accuracy = (predictions == answers).float().mean()
     
-    print(f"✓ Training step successful")
+    print(f"  Training step successful")
     print(f"  - Loss: {loss.item():.4f}")
     print(f"  - Batch accuracy: {accuracy.item():.4f}")
     
 except Exception as e:
-    print(f"✗ Training step failed: {str(e)}")
+    print(f"  Training step failed: {str(e)}")
     sys.exit(1)
 
 print("\n" + "=" * 80)
-print("✓ ALL TESTS PASSED!")
+print("  ALL TESTS PASSED!")
 print("=" * 80)
 print("\nYour setup is ready for training.")
 print("\nTo start lightweight training, run:")

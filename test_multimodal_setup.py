@@ -21,7 +21,7 @@ encoder = CNNVisionEncoder(backbone="resnet50", feature_dim=512, pretrained=Fals
 test_images = torch.randn(2, 3, 224, 224)
 vision_features = encoder(test_images)
 
-print(f"   ✓ CNNVisionEncoder")
+print(f"     CNNVisionEncoder")
 print(f"   Input: {test_images.shape}")
 print(f"   Output: {vision_features.shape}")
 print(f"   Parameters: {sum(p.numel() for p in encoder.parameters()):,}")
@@ -45,7 +45,7 @@ test_images = torch.randn(2, 3, 224, 224)
 
 logits = model(test_questions, test_images)
 
-print(f"   ✓ MultimodalVQAModel (concat fusion)")
+print(f"     MultimodalVQAModel (concat fusion)")
 print(f"   Question input: {test_questions.shape}")
 print(f"   Image input: {test_images.shape}")
 print(f"   Output logits: {logits.shape}")
@@ -64,7 +64,7 @@ att_model = create_multimodal_model(
 )
 
 att_logits = att_model(test_questions, test_images)
-print(f"   ✓ Attention Fusion")
+print(f"     Attention Fusion")
 print(f"   Output: {att_logits.shape}")
 print(f"   Parameters: {sum(p.numel() for p in att_model.parameters()):,}")
 
@@ -72,7 +72,7 @@ print(f"   Parameters: {sum(p.numel() for p in att_model.parameters()):,}")
 print("\n4. Testing Prediction...")
 predictions, probabilities = model.predict(test_questions, test_images)
 
-print(f"   ✓ Predictions")
+print(f"     Predictions")
 print(f"   Predictions: {predictions}")
 print(f"   Top probabilities: {probabilities.max(dim=1)[0]}")
 
@@ -82,42 +82,42 @@ try:
     from src.data.dataset import MultimodalVQADataset
     
     # Check if data exists
-    if Path("trainrenamed.csv").exists():
+    if Path("data/trainrenamed.csv").exists():
         dataset = MultimodalVQADataset(
-            csv_file="trainrenamed.csv",
-            image_dir="train",
-            answers_file="answers.txt",
+            csv_file="data/trainrenamed.csv",
+            image_dir="data/train",
+            answers_file="data/answers.txt",
             max_length=32,
             image_size=224,
             mode='train'
         )
         
         sample = dataset[0]
-        print(f"   ✓ MultimodalVQADataset")
+        print(f"     MultimodalVQADataset")
         print(f"   Sample image shape: {sample['image'].shape}")
         print(f"   Sample question shape: {sample['question'].shape}")
         print(f"   Sample answer: {sample['answer_text']}")
         print(f"   Dataset size: {len(dataset)}")
     else:
-        print("   ⚠ Data files not found (skipping dataset test)")
-        print("   Expected: trainrenamed.csv, train/, answers.txt")
+        print("     Data files not found (skipping dataset test)")
+        print("   Expected: data/trainrenamed.csv, data/train/, data/answers.txt")
         
 except Exception as e:
-    print(f"   ⚠ Dataset test skipped: {e}")
+    print(f"     Dataset test skipped: {e}")
 
 # Summary
 print("\n" + "="*60)
-print("✓ All Core Components Working!")
+print("  All Core Components Working!")
 print("="*60)
 print("\nImplementation Summary:")
-print("  ✓ Vision Encoder (ResNet50): ~25M params")
-print("  ✓ Multimodal Model (Concat): ~30M params")
-print("  ✓ Multimodal Model (Attention): ~32M params")
-print("  ✓ Forward pass successful")
-print("  ✓ Prediction method working")
+print("    Vision Encoder (ResNet50): ~25M params")
+print("    Multimodal Model (Concat): ~30M params")
+print("    Multimodal Model (Attention): ~32M params")
+print("    Forward pass successful")
+print("    Prediction method working")
 print("\nNext Steps:")
 print("  1. Run training notebook: notebooks/03_multimodal_training.ipynb")
 print("  2. Train concat fusion first (fastest)")
 print("  3. Compare with text-only baseline (47% → 60%+)")
 print("  4. Try attention fusion for better results")
-print("\nReady for training! 🚀")
+print("\nReady for training!  ")

@@ -26,7 +26,7 @@ def load_models():
         config = yaml.safe_load(f)
     
     # Load answers
-    with open('answers.txt', 'r', encoding='utf-8') as f:
+    with open('data/answers.txt', 'r', encoding='utf-8') as f:
         answers = sorted([line.strip() for line in f.readlines()])
     
     idx_to_answer = {idx: ans for idx, ans in enumerate(answers)}
@@ -87,8 +87,8 @@ def test_models(question="What is shown in the image?", image_path=None):
     print("Loading models...")
     text_model, multimodal_model, vocab, idx_to_answer, device = load_models()
     
-    print(f"✓ Models loaded on {device}")
-    print(f"✓ Answer vocabulary: {len(idx_to_answer)} classes")
+    print(f"  Models loaded on {device}")
+    print(f"  Answer vocabulary: {len(idx_to_answer)} classes")
     
     # Encode question
     question_tensor = encode_question(question, vocab, device)
@@ -134,18 +134,18 @@ def test_models(question="What is shown in the image?", image_path=None):
             mm_answer = idx_to_answer[mm_top3.indices[0][0].item()]
             
             if text_answer != mm_answer:
-                print(f"\n🔍 Models disagree!")
+                print(f"\n  Models disagree!")
                 print(f"  Text-only: {text_answer}")
                 print(f"  Multimodal: {mm_answer}")
             else:
-                print(f"\n✅ Both models agree: {text_answer}")
+                print(f"\n  Both models agree: {text_answer}")
         
         else:
             print("\nNo image provided - only text-only prediction shown")
 
 if __name__ == "__main__":
     # Example usage
-    print("🎯 VQA Model Test")
+    print("  VQA Model Test")
     print("=" * 50)
     
     # Test with text only

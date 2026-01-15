@@ -251,4 +251,4 @@ if __name__ == "__main__":
     print(f"Output shape: {features.shape}")
     print(f"Parameters: {sum(p.numel() for p in att_encoder.parameters()):,}")
     
-    print("\n✓ Vision encoder tests passed!")
+    print("\n  Vision encoder tests passed!")

@@ -32,7 +32,7 @@ sys.path.insert(0, str(project_root))
 from src.models.text_model import create_text_model
 from src.models.multimodal_model import create_multimodal_model
 
-print("✓ Setup complete!")
+print("  Setup complete!")
 ```
 
 ## Load Your Trained Models
@@ -75,8 +75,8 @@ class VQAPredictor:
                                std=[0.229, 0.224, 0.225])
         ])
         
-        print(f"✓ Models loaded on {self.device}")
-        print(f"✓ {self.num_classes} answer classes")
+        print(f"  Models loaded on {self.device}")
+        print(f"  {self.num_classes} answer classes")
     
     def _load_models(self):
         """Load both trained models"""
@@ -175,7 +175,7 @@ class VQAPredictor:
 predictor = VQAPredictor()
 ```
 
-## 🎯 Quick Test - Single Prediction
+##   Quick Test - Single Prediction
 
 ```python
 def quick_test(image_path, question):
@@ -206,7 +206,7 @@ def quick_test(image_path, question):
             
             # Highlight if different
             if result['text_only'][0]['answer'] != result['multimodal'][0]['answer']:
-                text += "\\n🔍 Models give different answers!"
+                text += "\\n  Models give different answers!"
         
         plt.text(0.1, 0.5, text, fontsize=11, verticalalignment='center')
         plt.tight_layout()
@@ -221,7 +221,7 @@ def quick_test(image_path, question):
 # quick_test("data/train/some_image.png", "What organ is shown?")
 ```
 
-## 📊 Batch Evaluation
+##   Batch Evaluation
 
 ```python
 def evaluate_on_test_set(test_csv="testrenamed.csv", image_dir="data/train", num_samples=100):
@@ -282,7 +282,7 @@ def evaluate_on_test_set(test_csv="testrenamed.csv", image_dir="data/train", num
 # results_df = evaluate_on_test_set(num_samples=200)
 ```
 
-## 🔍 Analyze Specific Examples
+##   Analyze Specific Examples
 
 ```python
 def show_examples(results_df, show_type='disagreement', num_examples=4):
@@ -294,13 +294,13 @@ def show_examples(results_df, show_type='disagreement', num_examples=4):
             results_df['text_prediction'] != results_df['multimodal_prediction']
         ].sample(min(num_examples, len(results_df)))
         
-        print("🔍 Cases where models disagree:")
+        print("  Cases where models disagree:")
         
         for idx, row in disagreements.iterrows():
             print(f"\\nQuestion: {row['question']}")
             print(f"True answer: {row['true_answer']}")
-            print(f"Text-only: {row['text_prediction']} ({'✓' if row['text_correct'] else '✗'})")
-            print(f"Multimodal: {row['multimodal_prediction']} ({'✓' if row['multimodal_correct'] else '✗'})")
+            print(f"Text-only: {row['text_prediction']} ({' ' if row['text_correct'] else ' '})")
+            print(f"Multimodal: {row['multimodal_prediction']} ({' ' if row['multimodal_correct'] else ' '})")
             
     elif show_type == 'correct':
         correct_both = results_df[
@@ -308,7 +308,7 @@ def show_examples(results_df, show_type='disagreement', num_examples=4):
             (results_df.get('multimodal_correct', True) == True)
         ].sample(min(num_examples, len(results_df)))
         
-        print("✅ Cases where both models are correct:")
+        print("  Cases where both models are correct:")
         for idx, row in correct_both.iterrows():
             print(f"Q: {row['question']}")
             print(f"A: {row['true_answer']} (both models got this right)")
@@ -319,7 +319,7 @@ def show_examples(results_df, show_type='disagreement', num_examples=4):
             results_df['text_correct'] == False
         ].sample(min(num_examples, len(results_df)))
         
-        print("❌ Error cases:")
+        print("  Error cases:")
         for idx, row in errors.iterrows():
             print(f"Q: {row['question']}")
             print(f"True: {row['true_answer']}")
@@ -332,12 +332,12 @@ def show_examples(results_df, show_type='disagreement', num_examples=4):
 # show_examples(results_df, 'errors', 3)
 ```
 
-## 🎮 Interactive Testing
+##   Interactive Testing
 
 ```python
 def interactive_test():
     """Interactive testing interface"""
-    print("🎮 Interactive VQA Testing")
+    print("  Interactive VQA Testing")
     print("Commands: 'quit' to exit")
     
     while True:
@@ -363,7 +363,7 @@ def interactive_test():
 # interactive_test()
 ```
 
-## 📈 Performance Comparison
+##   Performance Comparison
 
 ```python
 def plot_model_comparison(results_df):
@@ -413,7 +413,7 @@ def plot_model_comparison(results_df):
 
 ---
 
-## 🚀 Getting Started
+##   Getting Started
 
 1. **Run the setup cells** to load your models
 2. **Try a quick test**: `quick_test("path/to/image.png", "What is shown?")`
@@ -421,4 +421,4 @@ def plot_model_comparison(results_df):
 4. **Explore examples**: `show_examples(results_df, 'disagreement')`
 5. **Interactive mode**: `interactive_test()`
 
-Your models are trained and ready to use! 🎉
+Your models are trained and ready to use!  

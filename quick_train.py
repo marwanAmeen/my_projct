@@ -27,13 +27,13 @@ config['training']['num_epochs'] = 2
 config['training']['batch_size'] = 8
 config['training']['early_stopping_patience'] = 10  # Disable early stopping
 
-print(f"\n✓ Using lightweight configuration")
+print(f"\n  Using lightweight configuration")
 print(f"  - Batch size: {config['training']['batch_size']}")
 print(f"  - Epochs: {config['training']['num_epochs']}")
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"✓ Device: {device}")
+print(f"  Device: {device}")
 
 # Set seed
 torch.manual_seed(config['seed'])
@@ -53,7 +53,7 @@ train_loader, val_loader, test_loader, vocab_size, num_classes, vocab = create_t
     max_length=config['text']['max_length']
 )
 
-print(f"✓ Data loaded: {len(train_loader)} train batches, {len(val_loader)} val batches")
+print(f"  Data loaded: {len(train_loader)} train batches, {len(val_loader)} val batches")
 
 print("\n" + "-" * 80)
 print("Creating Model...")
@@ -71,7 +71,7 @@ model = create_text_model(
     bidirectional=True
 )
 
-print(f"✓ Model created: {sum(p.numel() for p in model.parameters()):,} parameters")
+print(f"  Model created: {sum(p.numel() for p in model.parameters()):,} parameters")
 
 print("\n" + "-" * 80)
 print("Starting Training...")

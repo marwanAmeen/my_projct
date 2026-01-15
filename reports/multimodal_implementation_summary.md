@@ -1,6 +1,6 @@
 # Multimodal VQA Implementation Summary
 
-## 🎯 What We Built
+##   What We Built
 
 ### 1. Vision Encoder (`src/models/vision_encoder.py`)
 
@@ -61,7 +61,7 @@ Text ⊗ Vision → Bilinear pooling → Classifier
 - Vocabulary building from questions
 - Answer mapping to class indices
 
-## 📊 Model Comparison
+##   Model Comparison
 
 | Model | Fusion | Params | Speed | Expected Acc |
 |-------|--------|--------|-------|--------------|
@@ -71,7 +71,7 @@ Text ⊗ Vision → Bilinear pooling → Classifier
 | Bilinear | Bilinear pooling | 35M | Medium | 64-67% |
 | CrossModal | Full attention | 40M | Slower | 67-70% |
 
-## 🚀 How to Use
+##   How to Use
 
 ### Quick Start - Concatenation Fusion
 ```python
@@ -115,7 +115,7 @@ model = create_multimodal_model(
 )
 ```
 
-## 💡 Training Tips
+##   Training Tips
 
 ### GPU Requirements
 - Concat fusion: 4GB VRAM (works on Colab free)
@@ -132,7 +132,7 @@ model = create_multimodal_model(
 - Concat on GPU: ~30 minutes
 - Cross-modal on GPU: ~60 minutes
 
-## 📈 Expected Performance Gains
+##   Expected Performance Gains
 
 **Text-only baseline**: 47.36% test accuracy
 
@@ -151,7 +151,7 @@ model = create_multimodal_model(
 - Bidirectional attention
 - Best multimodal fusion
 
-## 🔧 Next Steps
+##   Next Steps
 
 ### Phase 1: Test Multimodal Training
 1. Run concat fusion first (fastest to train)
@@ -175,7 +175,7 @@ model = create_multimodal_model(
 2. Fine-tune on PathVQA
 3. Target 75-80% accuracy
 
-## 📁 File Structure
+##   File Structure
 
 ```
 src/
@@ -198,24 +198,24 @@ notebooks/
 └── 03_multimodal_training.ipynb  # TODO: Create this next
 ```
 
-## ✅ What's Complete
-- ✅ Vision encoder with ResNet backbone
-- ✅ 4 different fusion strategies
-- ✅ Multimodal dataset with image loading
-- ✅ Image preprocessing and augmentation
-- ✅ Cross-modal attention mechanisms
+##   What's Complete
+-   Vision encoder with ResNet backbone
+-   4 different fusion strategies
+-   Multimodal dataset with image loading
+-   Image preprocessing and augmentation
+-   Cross-modal attention mechanisms
 
-## 🔄 What's Next
+##   What's Next
 - [ ] Create multimodal training notebook
 - [ ] Test concat fusion end-to-end
 - [ ] Train and evaluate first multimodal model
 - [ ] Compare text-only vs multimodal results
 - [ ] Fine-tune best performing model
 
-## 🎯 Goal
+##   Goal
 **Achieve 60-70% test accuracy** (up from 47% text-only baseline)
 
 ---
 
-**Status**: ✅ Models Ready for Training
+**Status**:   Models Ready for Training
 **Next Action**: Create training notebook and run first experiment

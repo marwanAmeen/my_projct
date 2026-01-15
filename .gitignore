@@ -44,7 +44,7 @@ checkpoints/*.pt
 *.log
 logs/
 wandb/
-train/*.png
+data/train/*.png
 # IDEs
 .vscode/
 .idea/
@@ -67,3 +67,5 @@ results/predictions/*.json
 # Reports (keep templates)
 reports/*.pdf
 reports/*.docx
+data/train/image1.png
+data/train/image3.png

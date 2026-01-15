@@ -67,6 +67,18 @@ class MultimodalVQATrainer:
         self.best_val_acc = 0.0
         self.epochs_without_improvement = 0
         
+        # Training history for plotting
+        self.train_losses = []
+        self.train_accuracies = []
+        self.val_losses = []
+        self.val_accuracies = []
+        self.training_history = {
+            'train_loss': [],
+            'train_acc': [],
+            'val_loss': [],
+            'val_acc': []
+        }
+        
         # Metrics
         self.train_metrics = VQAMetrics(model.num_classes)
         self.val_metrics = VQAMetrics(model.num_classes)
@@ -240,6 +252,28 @@ class MultimodalVQATrainer:
         
         print(f"Loaded checkpoint from epoch {self.current_epoch}")
     
+    def get_history(self):
+        """Get training history for plotting"""
+        return {
+            'train_loss': self.train_losses.copy(),
+            'train_acc': self.train_accuracies.copy(),
+            'val_loss': self.val_losses.copy(),
+            'val_acc': self.val_accuracies.copy()
+        }
+    
+    def reset_history(self):
+        """Reset training history"""
+        self.train_losses.clear()
+        self.train_accuracies.clear()
+        self.val_losses.clear()
+        self.val_accuracies.clear()
+        self.training_history = {
+            'train_loss': [],
+            'train_acc': [],
+            'val_loss': [],
+            'val_acc': []
+        }
+    
     def train(self):
         """Main training loop"""
         num_epochs = self.config['training']['num_epochs']
@@ -268,6 +302,18 @@ class MultimodalVQATrainer:
             print(f"Train Loss: {train_metrics['loss']:.4f}, Acc: {train_metrics['accuracy']:.4f}")
             print(f"Val Loss: {val_metrics['loss']:.4f}, Acc: {val_metrics['accuracy']:.4f}")
             print(f"Val F1 (macro): {val_metrics['f1_macro']:.4f}")
+            
+            # Store training history
+            self.train_losses.append(train_metrics['loss'])
+            self.train_accuracies.append(train_metrics['accuracy'])
+            self.val_losses.append(val_metrics['loss'])
+            self.val_accuracies.append(val_metrics['accuracy'])
+            
+            # Also store in training_history dict for compatibility
+            self.training_history['train_loss'].append(train_metrics['loss'])
+            self.training_history['train_acc'].append(train_metrics['accuracy'])
+            self.training_history['val_loss'].append(val_metrics['loss'])
+            self.training_history['val_acc'].append(val_metrics['accuracy'])
             
             # Save checkpoint
             self.save_checkpoint(f"checkpoint_epoch_{epoch + 1}.pth")
@@ -331,3 +377,13 @@ class MultimodalVQATrainer:
         test_acc = total_correct / len(all_predictions)
         
         return loss_meter.avg, test_acc, all_predictions, all_labels
+    
+    @property
+    def history(self):
+        """Property to access training history"""
+        return {
+            'train_loss': self.train_losses,
+            'train_acc': self.train_accuracies, 
+            'val_loss': self.val_losses,
+            'val_acc': self.val_accuracies
+        }
