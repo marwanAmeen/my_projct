@@ -288,3 +288,46 @@ class MultimodalVQATrainer:
         total_time = time.time() - start_time
         print(f"\nTraining completed in {total_time / 60:.2f} minutes")
         print(f"Best validation accuracy: {self.best_val_acc:.4f}")
+    
+    def evaluate(self, test_loader: DataLoader):
+        """Evaluate model on test set"""
+        self.model.eval()
+        
+        loss_meter = AverageMeter()
+        all_predictions = []
+        all_labels = []
+        
+        pbar = tqdm(test_loader, desc="Evaluating")
+        
+        with torch.no_grad():
+            for batch in pbar:
+                questions = batch['question'].to(self.device)
+                images = batch['image'].to(self.device)
+                answers = batch['answer'].to(self.device)
+                
+                # Forward pass
+                logits = self.model(questions, images)
+                loss = self.criterion(logits, answers)
+                
+                # Calculate predictions
+                predictions = logits.argmax(dim=1)
+                
+                # Store predictions and labels
+                all_predictions.extend(predictions.cpu().numpy().tolist())
+                all_labels.extend(answers.cpu().numpy().tolist())
+                
+                # Update loss meter
+                loss_meter.update(loss.item(), questions.size(0))
+                
+                # Calculate batch accuracy for progress bar
+                batch_acc = calculate_accuracy(predictions, answers)
+                pbar.set_postfix({
+                    'loss': f'{loss_meter.avg:.4f}',
+                    'acc': f'{batch_acc:.4f}'
+                })
+        
+        # Calculate final accuracy
+        total_correct = sum(p == l for p, l in zip(all_predictions, all_labels))
+        test_acc = total_correct / len(all_predictions)
+        
+        return loss_meter.avg, test_acc, all_predictions, all_labels
