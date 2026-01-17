@@ -192,6 +192,23 @@ python inference_tool.py
 - **Training Strategy**: Differential learning rates, focal loss, enhanced augmentation
 - **Vocabulary Optimization**: Reduced from 4,142 to 1,000 classes for better generalization
 
+### Key Features of the Codebase
+
+#### Configuration
+- **Improved Training Configuration**: The `improved_training_config.py` file introduces enhancements such as reduced class complexity, better data augmentation, and optimized learning rates.
+
+#### Dataset
+- **PathVQADataset**: Located in `dataset.py`, this class handles loading and preprocessing of the PathVQA dataset, including building answer vocabularies and applying transformations.
+
+#### Training
+- **Improved Training Script**: The `train_improved_model.py` script integrates the improved multimodal model with the existing data pipeline, featuring updated configurations for batch size, learning rate, and early stopping.
+
+#### Models
+- **Improved Multimodal VQA Model**: The `improved_multimodal_model.py` file defines a model with cross-modal attention fusion, spatial attention for vision, and multi-head cross-attention mechanisms.
+
+#### Evaluation
+- **VQA Metrics**: The `metrics.py` file provides evaluation metrics such as accuracy, F1-score, precision, and recall for assessing model performance.
+
 ### Evaluation Metrics & Results
 
 #### Primary Metrics
@@ -212,16 +229,3 @@ python inference_tool.py
 - **Key Insight**: Vocabulary reduction (4,142→1,000) significantly improved performance
 - **Best Strategy**: Enhanced multimodal with trainable backbone + attention mechanisms
 
-### Timeline
-- **Week 9**: Preliminary report with baseline results
-- **Week 13/14**: Final report with comprehensive analysis
-
-### Team Members
-- [Add team member names and contributions]
-
-### References
-- PathVQA Dataset: [Add citation]
-- Model architectures: [Add citations]
-
-### Contact
-For questions or cloud token requests: Prof. Ir. Dr. Chan Chee Seng - cs.chan@um.edu.my

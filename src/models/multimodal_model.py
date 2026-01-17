@@ -359,13 +359,22 @@ def create_multimodal_model(
             **kwargs
         )
     elif model_type == "cross_attention":
+        # Filter kwargs for CrossModalAttentionVQA which has different parameters
+        cross_attention_kwargs = {
+            k: v for k, v in kwargs.items()
+            if k in ['embedding_dim', 'text_hidden_dim', 'vision_feature_dim', 
+                     'num_attention_heads', 'dropout']
+        }
+        # Map fusion_hidden_dim to vision_feature_dim if provided
+        if 'fusion_hidden_dim' in kwargs and 'vision_feature_dim' not in cross_attention_kwargs:
+            cross_attention_kwargs['vision_feature_dim'] = kwargs['fusion_hidden_dim']
         return CrossModalAttentionVQA(
             vocab_size=vocab_size,
             num_classes=num_classes,
-            **kwargs
+            **cross_attention_kwargs
         )
     else:
-        raise ValueError(f"Unknown model type: {model_type}")
+        raise ValueError(f"Unknown model type: {model_type}. Valid options: 'concat', 'attention', 'bilinear', 'cross_attention'")
 
 
 if __name__ == "__main__":
