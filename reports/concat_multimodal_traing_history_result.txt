@@ -1,0 +1,83 @@
+Epoch 3/10
+Training Epoch 3: 100%
+ 1112/1112 [08:40<00:00,  2.50it/s, loss=2.7884, acc=0.4774]
+Validation Epoch 3: 100%
+ 124/124 [00:43<00:00,  3.44it/s]
+Train Loss: 2.9146, Train Acc: 0.4774 (47.74%)
+Val Loss: 3.2685, Val Acc: 0.4466 (44.66%)
+New best model saved! Val Acc: 0.4466 (44.66%)
+
+Epoch 4/10
+Training Epoch 4: 100%
+ 1112/1112 [08:36<00:00,  2.67it/s, loss=0.1593, acc=0.4975]
+Validation Epoch 4: 100%
+ 124/124 [00:44<00:00,  3.34it/s]
+Train Loss: 2.7705, Train Acc: 0.4975 (49.75%)
+Val Loss: 3.2112, Val Acc: 0.4729 (47.29%)
+New best model saved! Val Acc: 0.4729 (47.29%)
+
+Epoch 5/10
+Training Epoch 5: 100%
+ 1112/1112 [08:36<00:00,  2.92it/s, loss=2.2475, acc=0.5177]
+Validation Epoch 5: 100%
+ 124/124 [00:44<00:00,  2.75it/s]
+Train Loss: 2.6485, Train Acc: 0.5177 (51.77%)
+Val Loss: 3.2467, Val Acc: 0.4815 (48.15%)
+New best model saved! Val Acc: 0.4815 (48.15%)
+
+Epoch 6/10
+Training Epoch 6: 100%
+ 1112/1112 [08:37<00:00,  2.85it/s, loss=2.3522, acc=0.5345]
+Validation Epoch 6: 100%
+ 124/124 [00:44<00:00,  3.45it/s]
+Train Loss: 2.5548, Train Acc: 0.5345 (53.45%)
+Val Loss: 3.3419, Val Acc: 0.4770 (47.70%)
+
+Epoch 7/10
+Training Epoch 7: 100%
+ 1112/1112 [08:28<00:00,  2.83it/s, loss=0.5956, acc=0.5443]
+Validation Epoch 7: 100%
+ 124/124 [00:44<00:00,  2.93it/s]
+Train Loss: 2.4539, Train Acc: 0.5443 (54.43%)
+Val Loss: 3.3637, Val Acc: 0.4866 (48.66%)
+New best model saved! Val Acc: 0.4866 (48.66%)
+
+Epoch 8/10
+Training Epoch 8: 100%
+ 1112/1112 [08:38<00:00,  2.80it/s, loss=2.9372, acc=0.5546]
+Validation Epoch 8: 100%
+ 124/124 [00:44<00:00,  3.43it/s]
+Train Loss: 2.3733, Train Acc: 0.5546 (55.46%)
+Val Loss: 3.3837, Val Acc: 0.4992 (49.92%)
+New best model saved! Val Acc: 0.4992 (49.92%)
+
+Epoch 9/10
+Training Epoch 9: 100%
+ 1112/1112 [08:42<00:00,  2.91it/s, loss=0.0973, acc=0.5695]
+Validation Epoch 9: 100%
+ 124/124 [00:44<00:00,  3.20it/s]
+Train Loss: 2.2804, Train Acc: 0.5695 (56.95%)
+Val Loss: 3.4499, Val Acc: 0.4972 (49.72%)
+
+Epoch 10/10
+Training Epoch 10: 100%
+ 1112/1112 [08:30<00:00,  2.90it/s, loss=1.6278, acc=0.5804]
+Validation Epoch 10: 100%
+ 124/124 [00:44<00:00,  2.73it/s]
+Train Loss: 2.2086, Train Acc: 0.5804 (58.04%)
+Val Loss: 3.4575, Val Acc: 0.5119 (51.19%)
+New best model saved! Val Acc: 0.5119 (51.19%)
+
+============================================================
+Training Complete!
+============================================================
+Best validation accuracy: 0.5119 (51.19%)
+Total training time: 112.58 minutes
+Training epochs completed: 10
+Training history successfully tracked with 10 data points
+
+ Loaded best model from: /content/drive/MyDrive/WOA7015 Advanced Machine Learning/checkpoints/multimodal_concat/multimodal_concat/best_model.pth
+Evaluating: 100%|██████████| 198/198 [18:47<00:00,  5.69s/it, loss=5.0435, acc=0.7500]
+============================================================
+TEST SET RESULTS
+============================================================

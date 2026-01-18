@@ -1,0 +1,256 @@
+Starting Custom Training with History Tracking
+============================================================
+
+Epoch 1/10
+Training Epoch 1: 100%
+ 1112/1112 [31:34<00:00,  1.30it/s, loss=0.5028, acc=0.4169]
+Validation Epoch 1: 100%
+ 124/124 [00:46<00:00,  2.96it/s]
+Train Loss: 3.4141, Train Acc: 0.4169 (41.69%)
+Val Loss: 3.1670, Val Acc: 0.4435 (44.35%)
+New best model saved! Val Acc: 0.4435 (44.35%)
+
+Epoch 2/10
+Training Epoch 2: 100%
+ 1112/1112 [15:11<00:00,  1.44it/s, loss=3.1184, acc=0.4831]
+Validation Epoch 2: 100%
+ 124/124 [00:44<00:00,  3.29it/s]
+Train Loss: 2.8301, Train Acc: 0.4831 (48.31%)
+Val Loss: 3.1273, Val Acc: 0.4724 (47.24%)
+New best model saved! Val Acc: 0.4724 (47.24%)
+
+Epoch 3/10
+Training Epoch 3: 100%
+ 1112/1112 [16:39<00:00,  1.36it/s, loss=4.4503, acc=0.5151]
+Validation Epoch 3: 100%
+ 124/124 [00:44<00:00,  3.35it/s]
+Train Loss: 2.5952, Train Acc: 0.5151 (51.51%)
+Val Loss: 3.1293, Val Acc: 0.4876 (48.76%)
+New best model saved! Val Acc: 0.4876 (48.76%)
+
+Epoch 4/10
+Training Epoch 4: 100%
+ 1112/1112 [16:49<00:00,  1.43it/s, loss=2.4763, acc=0.5342]
+Validation Epoch 4: 100%
+ 124/124 [00:45<00:00,  3.29it/s]
+Train Loss: 2.4110, Train Acc: 0.5342 (53.42%)
+Val Loss: 3.1852, Val Acc: 0.4952 (49.52%)
+New best model saved! Val Acc: 0.4952 (49.52%)
+
+Epoch 5/10
+Training Epoch 5: 100%
+ 1112/1112 [16:42<00:00,  1.47it/s, loss=5.0721, acc=0.5522]
+Validation Epoch 5: 100%
+ 124/124 [00:45<00:00,  3.29it/s]
+Train Loss: 2.2528, Train Acc: 0.5522 (55.22%)
+Val Loss: 3.3274, Val Acc: 0.5043 (50.43%)
+New best model saved! Val Acc: 0.5043 (50.43%)
+
+Epoch 6/10
+Training Epoch 6: 100%
+ 1112/1112 [16:40<00:00,  1.45it/s, loss=1.7916, acc=0.5696]
+Validation Epoch 6: 100%
+ 124/124 [00:45<00:00,  3.34it/s]
+Train Loss: 2.1239, Train Acc: 0.5696 (56.96%)
+Val Loss: 3.3276, Val Acc: 0.5301 (53.01%)
+New best model saved! Val Acc: 0.5301 (53.01%)
+
+Epoch 7/10
+Training Epoch 7: 100%
+ 1112/1112 [16:41<00:00,  1.48it/s, loss=1.7039, acc=0.5851]
+Validation Epoch 7: 100%
+ 124/124 [00:45<00:00,  3.30it/s]
+Train Loss: 1.9953, Train Acc: 0.5851 (58.51%)
+Val Loss: 3.2969, Val Acc: 0.5337 (53.37%)
+New best model saved! Val Acc: 0.5337 (53.37%)
+
+Epoch 8/10
+Training Epoch 8: 100%
+ 1112/1112 [16:41<00:00,  1.42it/s, loss=5.1323, acc=0.5984]
+Validation Epoch 8: 100%
+ 124/124 [00:45<00:00,  3.33it/s]
+Train Loss: 1.8842, Train Acc: 0.5984 (59.84%)
+Val Loss: 3.7951, Val Acc: 0.5281 (52.81%)
+
+Epoch 9/10
+Training Epoch 9: 100%
+ 1112/1112 [15:07<00:00,  1.51it/s, loss=1.4134, acc=0.6133]
+Validation Epoch 9: 100%
+ 124/124 [00:46<00:00,  3.18it/s]
+Train Loss: 1.7728, Train Acc: 0.6133 (61.33%)
+Val Loss: 3.5751, Val Acc: 0.5484 (54.84%)
+New best model saved! Val Acc: 0.5484 (54.84%)
+
+Epoch 10/10
+Training Epoch 10: 100%
+ 1112/1112 [16:42<00:00,  1.52it/s, loss=0.0195, acc=0.6330]
+Validation Epoch 10: 100%
+ 124/124 [00:46<00:00,  3.16it/s]
+Train Loss: 1.6618, Train Acc: 0.6330 (63.30%)
+Val Loss: 4.1040, Val Acc: 0.5489 (54.89%)
+New best model saved! Val Acc: 0.5489 (54.89%)
+
+============================================================
+Training Complete!
+============================================================
+Best validation accuracy: 0.5489 (54.89%)
+Total training time: 192.79 minutes
+Training epochs completed: 10
+Training history successfully tracked with 10 data points
+using bilinear model type <
+Loaded best model from: /content/drive/MyDrive/Colab Notebooks/WOA7015 Advanced Machine Learning/checkpoints/multimodal_bilinear/multimodal_bilinear/best_model.pth
+Evaluating: 100%|██████████| 198/198 [01:13<00:00, 2.69it/s, loss=6.8248, acc=0.6667]
+
+
+however if we increase the epochs from 10 to 15 we notice improvement in the model bilinear 66 to 
+
+New  bilinear Model Training with History Tracking 15 Epoch 
+ Path /root/my_projct/checkpoints/multimodal_bilinear
+============================================================
+
+Epoch 1/15
+Training Epoch 1: 100%
+ 1482/1482 [06:23<00:00,  3.61it/s, loss=4.1437, acc=0.3956]
+Validation Epoch 1: 100%
+ 165/165 [00:27<00:00,  6.29it/s]
+Train Loss: 3.5441, Train Acc: 0.3956 (39.56%)
+Val Loss: 3.2320, Val Acc: 0.4197 (41.97%)
+New best model saved! Val Acc: 0.4197 (41.97%)
+
+Epoch 2/15
+Training Epoch 2: 100%
+ 1482/1482 [06:25<00:00,  4.04it/s, loss=3.5450, acc=0.4746]
+Validation Epoch 2: 100%
+ 165/165 [00:28<00:00,  6.10it/s]
+Train Loss: 2.9074, Train Acc: 0.4746 (47.46%)
+Val Loss: 3.0533, Val Acc: 0.4653 (46.53%)
+New best model saved! Val Acc: 0.4653 (46.53%)
+
+Epoch 3/15
+Training Epoch 3: 100%
+ 1482/1482 [06:28<00:00,  4.01it/s, loss=2.5001, acc=0.5106]
+Validation Epoch 3: 100%
+ 165/165 [00:27<00:00,  6.41it/s]
+Train Loss: 2.6583, Train Acc: 0.5106 (51.06%)
+Val Loss: 3.0731, Val Acc: 0.4906 (49.06%)
+New best model saved! Val Acc: 0.4906 (49.06%)
+
+Epoch 4/15
+Training Epoch 4: 100%
+ 1482/1482 [06:26<00:00,  4.05it/s, loss=2.2975, acc=0.5391]
+Validation Epoch 4: 100%
+ 165/165 [00:27<00:00,  6.65it/s]
+Train Loss: 2.4779, Train Acc: 0.5391 (53.91%)
+Val Loss: 3.0357, Val Acc: 0.4987 (49.87%)
+New best model saved! Val Acc: 0.4987 (49.87%)
+
+Epoch 5/15
+Training Epoch 5: 100%
+ 1482/1482 [06:23<00:00,  4.08it/s, loss=1.5329, acc=0.5575]
+Validation Epoch 5: 100%
+ 165/165 [00:26<00:00,  6.83it/s]
+Train Loss: 2.3417, Train Acc: 0.5575 (55.75%)
+Val Loss: 3.0263, Val Acc: 0.5291 (52.91%)
+New best model saved! Val Acc: 0.5291 (52.91%)
+
+Epoch 6/15
+Training Epoch 6: 100%
+ 1482/1482 [06:15<00:00,  4.23it/s, loss=3.3611, acc=0.5758]
+Validation Epoch 6: 100%
+ 165/165 [00:26<00:00,  6.70it/s]
+Train Loss: 2.2110, Train Acc: 0.5758 (57.58%)
+Val Loss: 3.1090, Val Acc: 0.5408 (54.08%)
+New best model saved! Val Acc: 0.5408 (54.08%)
+
+Epoch 7/15
+Training Epoch 7: 100%
+ 1482/1482 [06:14<00:00,  4.16it/s, loss=2.3690, acc=0.5932]
+Validation Epoch 7: 100%
+ 165/165 [00:26<00:00,  6.49it/s]
+Train Loss: 2.0912, Train Acc: 0.5932 (59.32%)
+Val Loss: 3.3515, Val Acc: 0.5554 (55.54%)
+New best model saved! Val Acc: 0.5554 (55.54%)
+
+Epoch 8/15
+Training Epoch 8: 100%
+ 1482/1482 [06:14<00:00,  4.21it/s, loss=0.8268, acc=0.6015]
+Validation Epoch 8: 100%
+ 165/165 [00:26<00:00,  6.82it/s]
+Train Loss: 1.9864, Train Acc: 0.6015 (60.15%)
+Val Loss: 3.3521, Val Acc: 0.5549 (55.49%)
+
+Epoch 9/15
+Training Epoch 9: 100%
+ 1482/1482 [06:14<00:00,  4.07it/s, loss=1.5365, acc=0.6146]
+Validation Epoch 9: 100%
+ 165/165 [00:26<00:00,  6.74it/s]
+Train Loss: 1.8950, Train Acc: 0.6146 (61.46%)
+Val Loss: 3.5114, Val Acc: 0.5580 (55.80%)
+New best model saved! Val Acc: 0.5580 (55.80%)
+
+Epoch 10/15
+Training Epoch 10: 100%
+ 1482/1482 [06:12<00:00,  4.15it/s, loss=0.2824, acc=0.6322]
+Validation Epoch 10: 100%
+ 165/165 [00:26<00:00,  6.76it/s]
+Train Loss: 1.8029, Train Acc: 0.6322 (63.22%)
+Val Loss: 3.4937, Val Acc: 0.5711 (57.11%)
+New best model saved! Val Acc: 0.5711 (57.11%)
+
+Epoch 11/15
+Training Epoch 11: 100%
+ 1482/1482 [06:17<00:00,  4.09it/s, loss=0.9233, acc=0.6393]
+Validation Epoch 11: 100%
+ 165/165 [00:27<00:00,  6.15it/s]
+Train Loss: 1.7302, Train Acc: 0.6393 (63.93%)
+Val Loss: 3.6970, Val Acc: 0.5711 (57.11%)
+
+Epoch 12/15
+Training Epoch 12: 100%
+ 1482/1482 [06:24<00:00,  3.86it/s, loss=2.6011, acc=0.6509]
+Validation Epoch 12: 100%
+ 165/165 [00:27<00:00,  6.52it/s]
+Train Loss: 1.6475, Train Acc: 0.6509 (65.09%)
+Val Loss: 3.9229, Val Acc: 0.5742 (57.42%)
+New best model saved! Val Acc: 0.5742 (57.42%)
+
+Epoch 13/15
+Training Epoch 13: 100%
+ 1482/1482 [06:18<00:00,  4.05it/s, loss=1.4012, acc=0.6615]
+Validation Epoch 13: 100%
+ 165/165 [00:27<00:00,  6.64it/s]
+Train Loss: 1.5751, Train Acc: 0.6615 (66.15%)
+Val Loss: 4.1859, Val Acc: 0.5747 (57.47%)
+New best model saved! Val Acc: 0.5747 (57.47%)
+
+Epoch 14/15
+Training Epoch 14: 100%
+ 1482/1482 [06:17<00:00,  4.22it/s, loss=1.7858, acc=0.6702]
+Validation Epoch 14: 100%
+ 165/165 [00:26<00:00,  6.80it/s]
+Train Loss: 1.5123, Train Acc: 0.6702 (67.02%)
+Val Loss: 4.1765, Val Acc: 0.5742 (57.42%)
+
+Epoch 15/15
+Training Epoch 15: 100%
+ 1482/1482 [06:15<00:00,  4.34it/s, loss=1.8254, acc=0.6799]
+Validation Epoch 15: 100%
+ 165/165 [00:26<00:00,  6.85it/s]
+Train Loss: 1.4390, Train Acc: 0.6799 (67.99%)
+Val Loss: 4.4048, Val Acc: 0.5909 (59.09%)
+New best model saved! Val Acc: 0.5909 (59.09%)
+
+============================================================
+Training Complete!
+============================================================
+Best validation accuracy: 0.5909 (59.09%)
+Total training time: 103.11 minutes
+Training epochs completed: 15
+Training history successfully tracked with 15 data points
+
+Loaded best model from: /root/my_projct/checkpoints/multimodal_attention/multimodal_attention/best_model.pth
+Evaluating: 100%|███████████████████████████████████| 198/198 [00:53<00:00,  3.69it/s, loss=5.4461, acc=0.7500]
+
+============================================================
+TEST SET RESULTS
+============================================================
